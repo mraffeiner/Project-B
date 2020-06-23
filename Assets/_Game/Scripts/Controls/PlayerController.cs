@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        HandleAnimations();
+        HandleMovementAnimation();
         controller.SimpleMove(new Vector3(moveInput.x, 0f, moveInput.y) * moveSpeed);
     }
     private void Look()
@@ -44,9 +44,11 @@ public class PlayerController : MonoBehaviour
         transform.rotation = newRotation;
     }
 
-    private void HandleAnimations()
+    private void HandleMovementAnimation()
     {
+        // Get movement in local space to choose animation relative to mouse
         var localMoveInput = transform.InverseTransformDirection(new Vector3(moveInput.x, 0f, moveInput.y));
+
         if (animator != null)
         {
             if (Mathf.Abs(localMoveInput.z) > Mathf.Abs(localMoveInput.x))
