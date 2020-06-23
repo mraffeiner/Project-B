@@ -47,26 +47,17 @@ public class PlayerController : MonoBehaviour
     private void HandleAnimations()
     {
         var localMoveInput = transform.InverseTransformDirection(new Vector3(moveInput.x, 0f, moveInput.y));
-        Debug.Log(localMoveInput);
         if (animator != null)
         {
             if (Mathf.Abs(localMoveInput.z) > Mathf.Abs(localMoveInput.x))
             {
-                if (localMoveInput.z > 0f)
-                    animator.SetTrigger("Forward");
-                else if (localMoveInput.z < 0f)
-                    animator.SetTrigger("Backward");
-                else
-                    animator.SetTrigger("Idle");
+                animator.SetFloat("Horizontal", 0f);
+                animator.SetFloat("Vertical", localMoveInput.z);
             }
             else
             {
-                if (localMoveInput.x > 0f)
-                    animator.SetTrigger("Right");
-                else if (localMoveInput.x < 0f)
-                    animator.SetTrigger("Left");
-                else
-                    animator.SetTrigger("Idle");
+                animator.SetFloat("Vertical", 0f);
+                animator.SetFloat("Horizontal", localMoveInput.x);
             }
         }
     }
