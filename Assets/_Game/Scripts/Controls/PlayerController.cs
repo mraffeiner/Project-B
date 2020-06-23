@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour
 
     private Camera mainCam;
     private CharacterController controller;
+    private Animator animator;
     private Vector2 moveInput;
 
     private void Awake()
     {
         mainCam = Camera.main;
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void OnMove(InputValue value) => moveInput = value.Get<Vector2>();
@@ -24,8 +26,11 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
-    private void Move() => controller.SimpleMove(new Vector3(moveInput.x, 0f, moveInput.y) * moveSpeed);
-
+    private void Move()
+    {
+        HandleAnimations();
+        controller.SimpleMove(new Vector3(moveInput.x, 0f, moveInput.y) * moveSpeed);
+    }
     private void Look()
     {
         var oldRotation = transform.rotation;
@@ -37,5 +42,32 @@ public class PlayerController : MonoBehaviour
         newRotation.z = oldRotation.z;
 
         transform.rotation = newRotation;
+    }
+
+    private void HandleAnimations()
+    {
+        var localMoveInput = transform.InverseTransformDirection(new Vector3(moveInput.x, 0f, moveInput.y));
+        Debug.Log(localMoveInput);
+        if (animator != null)
+        {
+            if (Mathf.Abs(localMoveInput.z) > Mathf.Abs(localMoveInput.x))
+            {
+                if (localMoveInput.z > 0f)
+                    animator.SetTrigger("Forward");
+                else if (localMoveInput.z < 0f)
+                    animator.SetTrigger("Backward");
+                else
+                    animator.SetTrigger("Idle");
+            }
+            else
+            {
+                if (localMoveInput.x > 0f)
+                    animator.SetTrigger("Right");
+                else if (localMoveInput.x < 0f)
+                    animator.SetTrigger("Left");
+                else
+                    animator.SetTrigger("Idle");
+            }
+        }
     }
 }
