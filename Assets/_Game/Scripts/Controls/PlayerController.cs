@@ -4,12 +4,15 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform lookAtTarget = null;
+    [SerializeField] private ParticleSystem attackParticles = null;
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float attackCooldown = 2f;
 
     private Camera mainCam;
     private CharacterController controller;
     private Animator animator;
     private Vector2 moveInput;
+    private float remainingAttackCooldown = 0f;
 
     private void Awake()
     {
@@ -20,10 +23,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue value) => moveInput = value.Get<Vector2>();
 
+    public void OnAttack() => Shoot();
+
     private void Update()
     {
         Look();
         Move();
+
+        if (remainingAttackCooldown > 0f)
+            remainingAttackCooldown -= Time.deltaTime;
     }
 
     private void Move()
@@ -42,6 +50,15 @@ public class PlayerController : MonoBehaviour
         newRotation.z = oldRotation.z;
 
         transform.rotation = newRotation;
+    }
+
+    private void Shoot()
+    {
+        if (remainingAttackCooldown <= 0f)
+        {
+            attackParticles.Play();
+            remainingAttackCooldown = attackCooldown;
+        }
     }
 
     private void HandleMovementAnimation()
