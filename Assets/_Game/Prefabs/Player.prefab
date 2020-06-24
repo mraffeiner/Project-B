@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3142632955770210140}
   - component: {fileID: 2875847465991183099}
   - component: {fileID: 4777439483303855255}
+  - component: {fileID: 783751346499759147}
   m_Layer: 0
   m_Name: ShotParticle
   m_TagString: Untagged
@@ -3612,9 +3613,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -3794,7 +3795,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4812,6 +4813,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &783751346499759147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778621735591129692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3061966fe69ed014fa44aca204967e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2889406353442084990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4853,6 +4866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3608158948058532432}
   - component: {fileID: 3608158948058532435}
+  - component: {fileID: 7227624225498062475}
   - component: {fileID: 3608158948058532438}
   - component: {fileID: 3608158948058532433}
   m_Layer: 0
@@ -4896,6 +4910,20 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &7227624225498062475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3608158948058532434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d82eeb5c2c2b3e49a6d4690c5ed601b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: {fileID: 11400000, guid: 3b90766ad8979a84d8cf62df3f9c5a8b, type: 2}
+  health: {fileID: 11400000, guid: 02fe32e33b49dba46bbd69899dbef90f, type: 2}
 --- !u!114 &3608158948058532438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4908,10 +4936,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33ee9ddab2e03c41b6765b735d0d394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackCooldown: 1
+  moveSpeed: 7
   lookAtTarget: {fileID: 0}
   attackParticles: {fileID: 2875847465991183099}
-  moveSpeed: 7
-  attackCooldown: 1
 --- !u!114 &3608158948058532433
 MonoBehaviour:
   m_ObjectHideFlags: 0
