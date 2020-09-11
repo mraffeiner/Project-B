@@ -44,7 +44,7 @@ public class PlayerController : ControllerBase
         var localMoveDirection = transform.InverseTransformDirection(moveDirection);
 
         // Set bool to differentiate which input is more dominant
-        var verticalDominant = Mathf.Abs(localMoveDirection.z) > Mathf.Abs(localMoveDirection.x);
+        var verticalDominant = Mathf.Abs(localMoveDirection.z) >= Mathf.Abs(localMoveDirection.x);
 
         animator.SetFloat("Horizontal", localMoveDirection.x);
         animator.SetFloat("Vertical", localMoveDirection.z);

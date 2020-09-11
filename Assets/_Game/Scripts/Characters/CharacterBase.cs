@@ -27,5 +27,5 @@ public abstract class CharacterBase : MonoBehaviour, IHasHealth
         Debug.Log($"{name} healed for {value}");
     }
 
-    public void Die() => Destroy(gameObject);
+    public void Die() => gameObject.SetActive(false);
 }
