@@ -1,5 +1,5 @@
-# Project-B
-#### Solo Project: Singleplayer Arena Brawler (PC)
+# Solo Project: Project-B
+#### Singleplayer Arena Brawler (PC)
 
 ## Featured Skills
 
